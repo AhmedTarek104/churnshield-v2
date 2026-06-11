@@ -80,13 +80,13 @@ def load_all():
     try:
         with open(os.path.join(MODELS_DIR, "best_model.pkl"), "rb") as f:
             data["model"] = pickle.load(f)
-    except Exception:
+    except FileNotFoundError:
         data["model"] = None
 
     try:
         with open(os.path.join(MODELS_DIR, "shap_explainer.pkl"), "rb") as f:
             data["explainer_bundle"] = pickle.load(f)
-    except Exception:
+    except FileNotFoundError:
         data["explainer_bundle"] = None
 
     return data
@@ -782,7 +782,12 @@ def analyze_customer(sel_idx, n_clicks, cs, age, geo, gen, bal, sal, ten, prod, 
     from dash import ctx
 
     if model is None:
-        msg = html.P("Model not loaded", style={"color": RED})
+        msg = html.Div([
+            html.P("Live predictions require the model file.",
+                   style={"color": AMBER, "fontWeight": "bold", "margin": "0"}),
+            html.P("All other tabs show historical analysis.",
+                   style={"color": SUBTEXT, "fontSize": "12px", "margin": "4px 0 0 0"}),
+        ], style={**CARD_STYLE, "borderColor": AMBER})
         return msg, msg, msg, msg
 
     # Determine source

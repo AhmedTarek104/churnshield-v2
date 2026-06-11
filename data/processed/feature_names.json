@@ -1,0 +1,23 @@
+[
+  "CreditScore",
+  "Geography",
+  "Gender",
+  "Age",
+  "Tenure",
+  "Balance",
+  "NumOfProducts",
+  "HasCrCard",
+  "IsActiveMember",
+  "EstimatedSalary",
+  "balance_salary_ratio",
+  "products_per_year",
+  "age_group",
+  "engagement_score",
+  "credit_score_band",
+  "is_zero_balance",
+  "high_value_customer",
+  "tenure_stability",
+  "age_tenure_ratio",
+  "inactive_high_balance",
+  "clv_estimated"
+]

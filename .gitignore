@@ -1,5 +1,4 @@
 data/raw/
-data/processed/
 mlruns/
 models/*.pkl
 __pycache__/
