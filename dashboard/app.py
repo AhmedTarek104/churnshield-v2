@@ -5,6 +5,7 @@ import os
 import pickle
 import sys
 import warnings
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -19,10 +20,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 port = int(os.environ.get("PORT", 8050))
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-PROC_DIR   = r"G:\churnshield_v2\data\processed"
-MODELS_DIR = r"G:\churnshield_v2\models"
-OUTPUTS_DIR= r"G:\churnshield_v2\outputs"
-FIGS_DIR   = os.path.join(OUTPUTS_DIR, "figures")
+ROOT        = Path(__file__).resolve().parent.parent
+PROC_DIR    = ROOT / "data" / "processed"
+MODELS_DIR  = ROOT / "models"
+OUTPUTS_DIR = ROOT / "outputs"
+FIGS_DIR    = OUTPUTS_DIR / "figures"
 
 # ── Theme ────────────────────────────────────────────────────────────────────
 BG       = "#0D0D0D"

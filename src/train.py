@@ -3,6 +3,7 @@ import json
 import os
 import pickle
 import warnings
+from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
@@ -35,11 +36,12 @@ from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings("ignore")
 
-PROC_DIR = r"G:\churnshield_v2\data\processed"
-MODELS_DIR = r"G:\churnshield_v2\models"
-FIGS_DIR = r"G:\churnshield_v2\outputs\figures"
-TRACKING_URI = "sqlite:///G:/churnshield_v2/mlruns/mlflow.db"
-EXPERIMENT = "churnshield-v2"
+ROOT         = Path(__file__).resolve().parent.parent
+PROC_DIR     = ROOT / "data" / "processed"
+MODELS_DIR   = ROOT / "models"
+FIGS_DIR     = ROOT / "outputs" / "figures"
+TRACKING_URI = f"sqlite:///{ROOT / 'mlruns' / 'mlflow.db'}"
+EXPERIMENT   = "churnshield-v2"
 
 
 def load_splits():
@@ -200,6 +202,6 @@ if __name__ == "__main__":
     print(f"\nBest model: {best_name} (Val AUC={best_row['Val AUC']:.4f})")
     print(f"Saved to {MODELS_DIR}/best_model.pkl")
 
-    df_res.to_csv(os.path.join(r"G:\churnshield_v2\outputs", "model_comparison.csv"), index=False)
+    df_res.to_csv(ROOT / "outputs" / "model_comparison.csv", index=False)
 
     print("\nTRAINING COMPLETE")

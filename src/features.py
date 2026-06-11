@@ -2,12 +2,14 @@
 import json
 import os
 import pickle
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-RAW_FILE = r"G:\churnshield_v2\data\raw\Churn_Modelling.csv"
-PROC_DIR = r"G:\churnshield_v2\data\processed"
+ROOT     = Path(__file__).resolve().parent.parent
+RAW_FILE = ROOT / "data" / "raw" / "Churn_Modelling.csv"
+PROC_DIR = ROOT / "data" / "processed"
 
 
 def build_features(df: pd.DataFrame) -> pd.DataFrame:

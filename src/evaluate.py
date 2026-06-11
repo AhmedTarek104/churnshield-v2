@@ -3,6 +3,7 @@ import json
 import os
 import pickle
 import warnings
+from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
@@ -23,10 +24,11 @@ from sklearn.metrics import (
 
 warnings.filterwarnings("ignore")
 
-PROC_DIR = r"G:\churnshield_v2\data\processed"
-MODELS_DIR = r"G:\churnshield_v2\models"
-OUTPUTS_DIR = r"G:\churnshield_v2\outputs"
-FIGS_DIR = os.path.join(OUTPUTS_DIR, "figures")
+ROOT        = Path(__file__).resolve().parent.parent
+PROC_DIR    = ROOT / "data" / "processed"
+MODELS_DIR  = ROOT / "models"
+OUTPUTS_DIR = ROOT / "outputs"
+FIGS_DIR    = OUTPUTS_DIR / "figures"
 
 
 def load_data():

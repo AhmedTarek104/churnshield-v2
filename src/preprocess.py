@@ -1,11 +1,13 @@
 """Stratified train/val/test split."""
 import json
 import os
+from pathlib import Path
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-PROC_DIR = r"G:\churnshield_v2\data\processed"
+ROOT     = Path(__file__).resolve().parent.parent
+PROC_DIR = ROOT / "data" / "processed"
 
 
 if __name__ == "__main__":

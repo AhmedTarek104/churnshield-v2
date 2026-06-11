@@ -4,6 +4,7 @@ import os
 import pickle
 import sys
 import warnings
+from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import List
 
@@ -19,9 +20,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from api.schemas import BatchPredictionResponse, CustomerInput, PredictionResponse
 
-MODELS_DIR = r"G:\churnshield_v2\models"
-PROC_DIR = r"G:\churnshield_v2\data\processed"
-OUTPUTS_DIR = r"G:\churnshield_v2\outputs"
+ROOT        = Path(__file__).resolve().parent.parent
+MODELS_DIR  = ROOT / "models"
+PROC_DIR    = ROOT / "data" / "processed"
+OUTPUTS_DIR = ROOT / "outputs"
 
 API_VERSION = "2.0.0"
 

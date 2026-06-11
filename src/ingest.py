@@ -1,11 +1,13 @@
 """Data ingestion: download from Kaggle or generate synthetic data."""
 import os
 import subprocess
+from pathlib import Path
 import numpy as np
 import pandas as pd
 
-RAW_DIR = r"G:\churnshield_v2\data\raw"
-OUTPUT_FILE = os.path.join(RAW_DIR, "Churn_Modelling.csv")
+ROOT        = Path(__file__).resolve().parent.parent
+RAW_DIR     = ROOT / "data" / "raw"
+OUTPUT_FILE = RAW_DIR / "Churn_Modelling.csv"
 
 
 def try_kaggle_download() -> bool:
