@@ -80,16 +80,20 @@ def load_all():
         data["feat_names"] = []
 
     try:
-        with open(os.path.join(MODELS_DIR, "best_model.pkl"), "rb") as f:
+        with open(MODELS_DIR / "best_model.pkl", "rb") as f:
             data["model"] = pickle.load(f)
+        print("Model loaded successfully")
     except FileNotFoundError:
         data["model"] = None
+        print("Model file not found")
 
     try:
-        with open(os.path.join(MODELS_DIR, "shap_explainer.pkl"), "rb") as f:
+        with open(MODELS_DIR / "shap_explainer.pkl", "rb") as f:
             data["explainer_bundle"] = pickle.load(f)
+        print("SHAP explainer loaded successfully")
     except FileNotFoundError:
         data["explainer_bundle"] = None
+        print("SHAP explainer not found")
 
     return data
 

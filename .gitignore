@@ -1,6 +1,5 @@
 data/raw/
 mlruns/
-models/*.pkl
 __pycache__/
 *.pyc
 .env
