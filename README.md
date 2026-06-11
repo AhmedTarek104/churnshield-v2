@@ -1,14 +1,14 @@
 # ChurnShield v2
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Python](https://img.shields.io/badge/Python-3.13-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110-green)
-![XGBoost](https://img.shields.io/badge/XGBoost-2.0-orange)
+![CatBoost](https://img.shields.io/badge/CatBoost-AUC_0.838-orange)
 ![Dash](https://img.shields.io/badge/Dash-2.17-red)
 ![MLflow](https://img.shields.io/badge/MLflow-2.11-blue)
 
 ## Business Problem
 
-Banks lose 20-25% of customers annually to churn, each representing thousands of euros in lifetime value. Traditional reactive approaches catch churners after they've already left. ChurnShield v2 predicts churn 30 days in advance with >85% accuracy and tells relationship managers exactly who to call and why.
+Banks lose 20–25% of customers annually to churn, each representing thousands of euros in lifetime value. Traditional reactive approaches catch churners after they've already left. ChurnShield v2 predicts churn 30 days in advance and tells relationship managers exactly who to call and why.
 
 ## Solution
 
@@ -21,9 +21,22 @@ A production-grade ML system that:
 
 ## Live URLs
 
-- **API**: `http://your-api-url.railway.app` *(placeholder)*
-- **Dashboard**: `http://your-dashboard-url.railway.app` *(placeholder)*
-- **API Docs**: `http://your-api-url.railway.app/docs`
+- **Dashboard**: https://churnshield-v2.onrender.com/
+- **API Docs**: coming soon (FastAPI /docs)
+
+## Key Results
+
+| Metric | Value |
+|--------|-------|
+| Best Model | CatBoost |
+| Test AUC | 0.838 |
+| Test F1 | 0.585 |
+| Catch Rate | 77.8% |
+| Business-Optimal Threshold | 0.20 |
+| F1-Optimal Threshold | 0.44 |
+| Net Business Value | €457,613 |
+| Avg Customer CLV | €4,011 |
+| Customers Analyzed | 10,000 |
 
 ## Architecture
 
@@ -39,15 +52,6 @@ api/main.py         → FastAPI: /predict, /predict/batch, /health, /metrics
 dashboard/app.py    → 5-tab Dash dashboard (dark theme)
 ```
 
-## Key Results
-
-| Metric | Value |
-|--------|-------|
-| Best Model | *updated after training* |
-| Test AUC | *updated after training* |
-| Business-Optimal Threshold | *updated after training* |
-| Net Business Value | *updated after training* |
-
 ## How to Run Locally
 
 ```bash
@@ -62,14 +66,14 @@ python src/train.py
 python src/evaluate.py
 python src/explain.py
 
-# 3. Start the API
-uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
-
-# 4. Start the dashboard
+# 3. Start the dashboard
 python dashboard/app.py
 
+# 4. Start the API
+uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
 # 5. (Optional) MLflow UI
-mlflow ui --host 127.0.0.1 --port 5000 --backend-store-uri file:///G:/churnshield_v2/mlruns
+mlflow ui --host 127.0.0.1 --port 5000
 ```
 
 ## API Example
@@ -95,10 +99,10 @@ curl -X POST http://localhost:8000/predict \
 
 | Layer | Technology |
 |-------|-----------|
-| ML Models | XGBoost, LightGBM, CatBoost, RandomForest, LogisticRegression |
+| ML Models | CatBoost, LightGBM, RandomForest, HistGradientBoosting, LogisticRegression |
 | Explainability | SHAP (TreeExplainer) |
 | Experiment Tracking | MLflow |
 | API | FastAPI + Pydantic v2 |
 | Dashboard | Plotly Dash + Bootstrap |
-| Deployment | Railway (API + Dashboard) |
-| Language | Python 3.11 |
+| Deployment | Render |
+| Language | Python 3.13 |
