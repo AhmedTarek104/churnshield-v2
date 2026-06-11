@@ -16,6 +16,8 @@ import dash_bootstrap_components as dbc
 warnings.filterwarnings("ignore")
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+port = int(os.environ.get("PORT", 8050))
+
 # ── Paths ────────────────────────────────────────────────────────────────────
 PROC_DIR   = r"G:\churnshield_v2\data\processed"
 MODELS_DIR = r"G:\churnshield_v2\models"
@@ -947,5 +949,4 @@ def analyze_customer(sel_idx, n_clicks, cs, age, geo, gen, bal, sal, ten, prod, 
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8050))
-    app.run(debug=False, host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=False)
